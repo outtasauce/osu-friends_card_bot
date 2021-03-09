@@ -1,2 +1,2 @@
 # osu-friends_card_bot
- oh based discord card collector
+OSU based discord card collector
