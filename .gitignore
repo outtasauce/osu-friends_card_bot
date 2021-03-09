@@ -1,0 +1,6 @@
+*.json
+/cards
+/.idea
+/__pycache__
+credentials.py
+
