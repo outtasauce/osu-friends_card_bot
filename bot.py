@@ -1019,10 +1019,10 @@ async def _menu(ctx):
         await ctx.send("Discord ID not attached to existing account \nUse !register (osu_username)")
 
 # Opens the random map or selected map menu if available
-@client.command(aliases=['b', 'Bump', 'bump'])
+@bot.command(aliases=['b', 'Bump', 'bump'])
 async def _bump(ctx):
     if is_registered(ctx.author.id):
-        playerState = get_player_state(ctx.author.id)
+        playerState = await get_player_state(ctx.author.id)
         if("rmap" in playerState) or ("map@" in playerState): #If player is choosing a random map or has chosen a map
             for menus in cashed_messages:
                 if ctx.author.id in menus: 
