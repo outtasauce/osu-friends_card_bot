@@ -3,7 +3,7 @@ Osu manager minigame
 """
 
 
-def main():
+def main() -> None:
     pass
 
 
