@@ -1055,19 +1055,6 @@ async def _inventory_menu(ctx, page=0):
     else:
         await ctx.send("Discord ID not attached to existing account \nUse !register (osu_username)")
 
-
-@client.command(aliases=['il','IL','InventoryList','inventorylist','invlist','ilist'])
-async def _inventory_list(ctx):
-    osu_name = get_osu_name(ctx.author.id)
-    card_ids = await get_all_cards(str(ctx.author.id))
-    embed = discord.Embed(title=f"Inventory menu for {osu_name}", description=f"You have {len(card_ids)} Cards\n")
-    for id in card_ids:
-        cardRef = card_reference_list.get(id)
-        bmap = map_list.get(cardRef[1])
-        embed.add_field(name=f"- {bmap[3]} ({bmap[4]})")
-    
-    await ctx.send(embed=embed)
-
 # Checks if a reaction can happen
 async def is_valid_member_reaction(discord_id, message_id):
     if [discord_id, message_id] not in cashed_messages:
