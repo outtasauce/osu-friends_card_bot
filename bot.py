@@ -1018,6 +1018,24 @@ async def _menu(ctx):
     else:
         await ctx.send("Discord ID not attached to existing account \nUse !register (osu_username)")
 
+# Opens the random map or selected map menu if available
+@client.command(aliases=['b', 'Bump', 'bump'])
+async def _bump(ctx):
+    if is_registered(ctx.author.id):
+        playerState = get_player_state(ctx.author.id)
+        if("rmap" in playerState) or ("map@" in playerState): #If player is choosing a random map or has chosen a map
+            for menus in cashed_messages:
+                if ctx.author.id in menus: 
+                    message = await ctx.channel.fetch_message(menus[1])
+                    newMessage = await ctx.send(embed=message.embeds[0]) #Resend the embed message
+                    for react in message.reactions:
+                        await newMessage.add_reaction(react) #Add the reactions in the old message
+                    cashed_messages.append([ctx.author.id, newMessage.id]) #cache the new message
+                    await message.delete() #Delete old message
+                    cashed_messages.remove(menus) #Remove old message from cache
+    else:
+        await ctx.send("Discord ID not attached to existing account \nUse !register (osu_username)")
+
 
 # Opens the inventory menu at a specified page Closes other menus
 # Also adds that message to the message cash
