@@ -807,7 +807,7 @@ async def random_range_menu(discord_id, edit_message, min=-1, max=-1):
 
 # Buy token approval menu
 async def buy_token_approval_menu(discord_id, edit_message):
-    if int(await get_tokens(discord_id)) > 1:
+    if int(await get_BB(discord_id)) > 9:
         embed = discord.Embed(title=f"{get_osu_name(discord_id)} Spend 10 BB for 1 Daily token?",
                                 description=f"You have {await get_tokens(discord_id)} Daily tokens\n"
                                             f"You have {await get_BB(discord_id)} BB\n\n"
