@@ -403,6 +403,7 @@ async def get_map_set_id(map_id):
         except:
                return [0,0]
 
+
 # Very bad code used for adding maps
 pending_map_list = []
 async def add_map_set(map_id):
@@ -456,6 +457,7 @@ async def get_card_file(card_id):
 ################################################################################################
 #Edit Message menus
 ################################################################################################
+
 
 # This is called any time a reaction is made it will open other menus based on the players state and what they reacted with
 async def reaction_response(menu_id, discord_id, edit_message):
@@ -725,6 +727,7 @@ async def confirm_sell_card(discord_id, edit_message, card_id):
     await edit_message.add_reaction("✔")
     await edit_message.add_reaction("💼")
 
+
 # Actually sell the card
 async def sell_card(discord_id, edit_message, card_id):
     cards = await get_all_cards(discord_id)
@@ -740,6 +743,7 @@ async def sell_card(discord_id, edit_message, card_id):
         await edit_message.edit(content="Can't find card")
 
     await edit_message.add_reaction("💼")
+
 
 # daily menu
 async def open_daily_menu(discord_id, edit_message):
@@ -803,7 +807,7 @@ async def random_range_menu(discord_id, edit_message, min=-1, max=-1):
 
 # Buy token approval menu
 async def buy_token_approval_menu(discord_id, edit_message):
-    if int(await get_tokens(discord_id)) > 1:
+    if int(await get_BB(discord_id)) > 9:
         embed = discord.Embed(title=f"{get_osu_name(discord_id)} Spend 10 BB for 1 Daily token?",
                                 description=f"You have {await get_tokens(discord_id)} Daily tokens\n"
                                             f"You have {await get_BB(discord_id)} BB\n\n"
@@ -840,6 +844,7 @@ async def random_approval_menu(discord_id, edit_message):
         await edit_message.add_reaction("👍")
         await edit_message.add_reaction("❌")
         await update_player_state(discord_id, "RCM")
+
 
 async def open_trade_menu(discord_id, edit_message, page=0):
     cards = await get_all_cards(discord_id)
